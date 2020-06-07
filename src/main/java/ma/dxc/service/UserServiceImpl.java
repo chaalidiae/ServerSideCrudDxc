@@ -15,9 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ma.dxc.model.AppRole;
 import ma.dxc.model.AppUser;
-import ma.dxc.model.Permission;
 import ma.dxc.repository.UserRepository;
-import ma.dxc.repository.specs.PermissionSpecification;
 import ma.dxc.repository.specs.SearchCriteria;
 import ma.dxc.repository.specs.SearchOperation;
 import ma.dxc.repository.specs.UserSpecification;

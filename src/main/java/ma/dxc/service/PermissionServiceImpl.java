@@ -11,10 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ma.dxc.model.Contact;
 import ma.dxc.model.Permission;
 import ma.dxc.repository.PermissionRepository;
-import ma.dxc.repository.specs.ContactSpecification;
 import ma.dxc.repository.specs.PermissionSpecification;
 import ma.dxc.repository.specs.SearchCriteria;
 import ma.dxc.repository.specs.SearchOperation;

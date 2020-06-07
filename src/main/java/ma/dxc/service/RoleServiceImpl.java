@@ -14,10 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ma.dxc.model.AppRole;
-import ma.dxc.model.Contact;
 import ma.dxc.model.Permission;
 import ma.dxc.repository.RoleRepository;
-import ma.dxc.repository.specs.ContactSpecification;
 import ma.dxc.repository.specs.RoleSpecification;
 import ma.dxc.repository.specs.SearchCriteria;
 import ma.dxc.repository.specs.SearchOperation;

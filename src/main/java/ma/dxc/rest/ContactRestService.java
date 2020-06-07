@@ -4,12 +4,7 @@ import java.text.ParseException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,18 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.dxc.dto.ContactDTO;
 import ma.dxc.orchestration.ContactOrchestration;
-
-import ma.dxc.security.AuthenticationRequest;
-import ma.dxc.security.AuthenticationResponse;
-import ma.dxc.security.JwtUtil;
-import ma.dxc.service.MyUserDetailsService;
 
 /**
  * C'est la classe responsable de l'API Rest qui joue le role de l'intermédiaire entre la partie backend et la partie 
@@ -48,14 +36,6 @@ public class ContactRestService {
 	@Autowired
 	private ContactOrchestration contactOrchestration;
 	
-	@Autowired
-	private AuthenticationManager authenticationManager;
-
-	@Autowired
-	private JwtUtil jwtTokenUtil;
-	
-	@Autowired
-	private MyUserDetailsService userDetailsService;
 	
 	
 	

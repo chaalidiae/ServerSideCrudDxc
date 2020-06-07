@@ -53,14 +53,27 @@ public class AuditDTO {
 		this.operation = operation;
 		this.changes = changes;
 	}
-	@Override
-	public String toString() {
-		return "AuditDTO [id=" + id + ", user=" + user + ", date=" + date + ", operation=" + operation + ", changes="
-				+ changes + "]";
-	}
+	
 	public AuditDTO() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public Long getObjectID() {
+		return objectID;
+	}
+	public void setObjectID(Long objectID) {
+		this.objectID = objectID;
+	}
+	public String getObjectType() {
+		return objectType;
+	}
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+	@Override
+	public String toString() {
+		return "AuditDTO [id=" + id + ", user=" + user + ", objectID=" + objectID + ", objectType=" + objectType
+				+ ", date=" + date + ", operation=" + operation + ", changes=" + changes + "]";
 	}
 	
 	
