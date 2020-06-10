@@ -12,7 +12,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.javers.core.Javers;
-import org.javers.core.JaversBuilder;
 import org.javers.repository.jql.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,7 +21,6 @@ import org.springframework.stereotype.Component;
 import ma.dxc.model.AppUser;
 import ma.dxc.model.Audit;
 import ma.dxc.repository.AuditRepository;
-import ma.dxc.repository.UserRepository;
 import ma.dxc.service.UserServiceImpl;
 import ma.dxc.service.audit.Operation;
 

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.dxc.dto.AppUserDTO;
-import ma.dxc.orchestration.AccountOrchestration;
 import ma.dxc.orchestration.AppUserOrchestration;
 
 /**
@@ -36,8 +35,6 @@ public class AppUserRestService {
 	@Autowired
 	private AppUserOrchestration AppUserOrchestration;
 	
-	@Autowired
-	private AccountOrchestration accountOrchestration;
 	
 	
 	

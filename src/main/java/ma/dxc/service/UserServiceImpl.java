@@ -16,10 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ma.dxc.model.AppRole;
 import ma.dxc.model.AppUser;
-import ma.dxc.model.Contact;
-import ma.dxc.model.Permission;
 import ma.dxc.repository.UserRepository;
-import ma.dxc.repository.specs.PermissionSpecification;
 import ma.dxc.repository.specs.SearchCriteria;
 import ma.dxc.repository.specs.SearchOperation;
 import ma.dxc.repository.specs.UserSpecification;
@@ -97,7 +94,6 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public AppUser update(Long id, AppUser appUser) {
-		// TODO Auto-generated method stub
 		appUser.setId(id);
 		return userRepository.save(userRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new)
@@ -106,7 +102,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Page<AppUser> findAllPageable(int page, int size) {
-		// TODO Auto-generated method stub
 		Pageable pageable = PageRequest.of(page, size);
 		return userRepository.findAll(pageable);
 	}
