@@ -1,5 +1,11 @@
 package ma.dxc.dto;
 
+/**
+ * Cette classe est identique à RegisterForm, mais cette dernière ne peut pas communiquer avec la couche REST, donc, 
+ * on ajoute une autre classe RegisterFormDTO qui va nous rendre ce service.
+ * @author dchaa
+ *
+ */
 public class RegisterFormDTO {
 	private String username;
 	private String password;

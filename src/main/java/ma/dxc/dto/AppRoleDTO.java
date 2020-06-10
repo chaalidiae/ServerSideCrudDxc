@@ -6,6 +6,12 @@ import java.util.Collection;
 
 import ma.dxc.model.Permission;
 
+/**
+ * Cette classe est identique à AppRole, mais cette dernière ne peut pas communiquer avec la couche REST, donc, 
+ * on ajoute une autre classe AppRoleDTO qui va nous rendre ce service.
+ * @author dchaa
+ *
+ */
 public class AppRoleDTO {
 	
 	private Long id;
@@ -14,7 +20,6 @@ public class AppRoleDTO {
 	
 	public AppRoleDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public AppRoleDTO(Long id, String roleName, Collection<Permission> permissions) {
 		super();

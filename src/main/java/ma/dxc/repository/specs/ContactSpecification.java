@@ -17,9 +17,7 @@ import ma.dxc.model.Contact;
 
 public class ContactSpecification implements Specification<Contact> {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private List<SearchCriteria> list;
 	
@@ -31,7 +29,11 @@ public class ContactSpecification implements Specification<Contact> {
 	public void add(SearchCriteria criteria) {
         list.add(criteria);
 	}
-
+	
+	/**
+	 * Cette fonction nous permet de créer une nouvelle liste de prédicats, puis on ajoute critéria à cette liste,
+	 * puis on traite tout les cas possibles.
+	 */
 	@Override
 	public Predicate toPredicate(Root<Contact> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 		//creation d'une nouvelle predicate list

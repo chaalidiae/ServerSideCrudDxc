@@ -29,7 +29,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	
 	@Autowired
 	private JwtUtil jwtUtil;
-
+	
+	/**
+	 * Cette fonction est propre à la classe OncePerRequestFilter, elle vérifie au début si l'utilisateur existe dans 
+	 * la base de données, si oui, elle va vérifier l'ensemble de ses privilèges.
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {

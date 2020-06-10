@@ -19,7 +19,11 @@ import ma.dxc.repository.RoleRepository;
 import ma.dxc.repository.specs.RoleSpecification;
 import ma.dxc.repository.specs.SearchCriteria;
 import ma.dxc.repository.specs.SearchOperation;
-
+/**
+ * Cette classe implémente la classe RoleService qui contint les différents fonctions CRUD pour l'entite Role.
+ * @author dchaa
+ *
+ */
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {
@@ -29,27 +33,42 @@ public class RoleServiceImpl implements RoleService {
 	
 	@Autowired
 	PermissionServiceImpl permissionServiceImpl;
-
+	/**
+	 * Cette fonction permet de retourner tout les roles.
+	 */
 	@Override
 	public List<AppRole> findAll() {
 		return roleRepository.findAll();
 	}
-
+	
+	/**
+	 * Cette fonction permet de trouver un seul role en se basant dur son ID.
+	 */
 	@Override
 	public AppRole findOne(long id) {
 		return roleRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 	}
-
+	
+	/**
+	 * cette fonction permet d'ajouter un role.
+	 */
 	@Override
 	public AppRole save(AppRole appRole) {
 		return roleRepository.save(appRole);
 	}
 	
+	/**
+	 * cette fonction permet de récupérer un role en se basant sur son nom.
+	 */
 	@Override
 	public AppRole getRoleByRoleName(String roleName) {
 		return roleRepository.findByRoleName(roleName);
 	}
 
+	/**
+	 * Cette fonction permet de retrouver un role en se basant sur un mot clé et un critère,
+	 * elle retourne une page des roles.
+	 */
 	@Override
 	public Page<AppRole> search(String mc, int page, int size, String column) {
 				roleRepository.findAll();
@@ -77,6 +96,11 @@ public class RoleServiceImpl implements RoleService {
 		        return msTitleList;
 	}
 	
+	/**
+	 * Cette fonction permet de tester si une chaine de caractère est numérique.
+	 * @param strNum
+	 * @return
+	 */
 	public static boolean isNumeric(String strNum) {
 	    if (strNum == null) {
 	        return false;
@@ -89,6 +113,9 @@ public class RoleServiceImpl implements RoleService {
 	    return true;
 	}
 
+	/**
+	 * Cette fonction permet de modifier un role.
+	 */
 	@Override
 	public AppRole update(Long id, AppRole appRole) {
 		// TODO Auto-generated method stub
@@ -98,13 +125,19 @@ public class RoleServiceImpl implements RoleService {
                 .updateProperties(appRole));
 	}
 
+	 /**
+	  * Cette fonction permet de retourner tout les roles.
+	  */
 	@Override
 	public Page<AppRole> findAllPageable(int page, int size) {
 		// TODO Auto-generated method stub
 		Pageable pageable = PageRequest.of(page, size);
 		return roleRepository.findAll(pageable);
 	}
-
+ 
+	/**
+	 * Cette fonction permet de supprimer un role.
+	 */
 	@Override
 	public AppRole delete(Long id) {
 		AppRole role = roleRepository.findById(id).get();

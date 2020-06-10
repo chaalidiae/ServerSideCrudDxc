@@ -18,9 +18,7 @@ import ma.dxc.service.audit.Operation;
 
 public class AuditSpecification implements Specification<Audit> {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private List<SearchCriteria> list;
 	
@@ -32,7 +30,10 @@ public class AuditSpecification implements Specification<Audit> {
 	public void add(SearchCriteria criteria) {
         list.add(criteria);
 	}
-
+	/**
+	 * Cette fonction nous permet de créer une nouvelle liste de prédicats, puis on ajoute critéria à cette liste,
+	 * puis on traite tout les cas possibles.
+	 */
 	@Override
 	public Predicate toPredicate(Root<Audit> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 		//creation d'une nouvelle predicate list
@@ -48,7 +49,6 @@ public class AuditSpecification implements Specification<Audit> {
 	                predicates.add(builder.greaterThan(
 	                		root.get(criteria.getKey()), date1));
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}  
                 
@@ -60,7 +60,6 @@ public class AuditSpecification implements Specification<Audit> {
 	                predicates.add(builder.lessThan(
 	                		root.get(criteria.<Date>getKey()), date1));
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}  
                 
@@ -72,7 +71,6 @@ public class AuditSpecification implements Specification<Audit> {
 	                predicates.add(builder.greaterThanOrEqualTo(
 	                		root.get(criteria.getKey()), date1));
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
             } else if (criteria.getOperation().equals(SearchOperation.LESS_THAN_EQUAL)) {
@@ -83,7 +81,6 @@ public class AuditSpecification implements Specification<Audit> {
 	                predicates.add(builder.lessThanOrEqualTo(
 	                		root.get(criteria.<Date>getKey()), date1));
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
             } else if (criteria.getOperation().equals(SearchOperation.NOT_EQUAL)) {

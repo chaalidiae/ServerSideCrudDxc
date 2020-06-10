@@ -1,5 +1,9 @@
 package ma.dxc.service.audit;
-
+/**
+ * Cette enum contient l'ensemble des opérations sur l'ensemble des entités.
+ * @author dchaa
+ *
+ */
 public enum Operation {
 	//User operations
 	INSERTE_USER,

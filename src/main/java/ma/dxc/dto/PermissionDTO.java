@@ -1,5 +1,11 @@
 package ma.dxc.dto;
 
+/**
+ * Cette classe est identique à Permission, mais cette dernière ne peut pas communiquer avec la couche REST, donc, 
+ * on ajoute une autre classe PermissionDTO qui va nous rendre ce service.
+ * @author dchaa
+ *
+ */
 public class PermissionDTO {
 	
 	private Long id;

@@ -1,12 +1,17 @@
 package ma.dxc.security;
 
+/**
+ * Cette classe représente une requete d'authentification qui se carfactérise généralement par un nom d'utilisateur
+ * et un mot de passe.
+ * @author dchaa
+ *
+ */
 public class AuthenticationRequest {
 	
 	private String username;
 	private String password;
 	public AuthenticationRequest() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public AuthenticationRequest(String username, String password) {
 		super();

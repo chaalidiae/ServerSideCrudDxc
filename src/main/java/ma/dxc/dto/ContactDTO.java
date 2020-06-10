@@ -2,6 +2,12 @@ package ma.dxc.dto;
 
 import java.util.Date;
 
+/**
+ * Cette classe est identique à Contact, mais cette dernière ne peut pas communiquer avec la couche REST, donc, 
+ * on ajoute une autre classe ContactDTO qui va nous rendre ce service.
+ * @author dchaa
+ *
+ */
 public class ContactDTO {
 	private Long id;
 	private String nom;

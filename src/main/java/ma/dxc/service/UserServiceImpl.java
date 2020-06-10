@@ -31,28 +31,37 @@ public class UserServiceImpl implements UserService {
 	RoleServiceImpl appRoleServiceImpl;
 	@Autowired
 	BCryptPasswordEncoder encoder;
-
+ 
+	/**
+	 * Cette fonction permet de récuperer une liste des utilisateurs.
+	 */
 	@Override
 	public List<AppUser> findAll() {
-		// TODO Auto-generated method stub
 		return userRepository.findAll();
 	}
-
+ 
+	/**
+	 * Cette fonction permet de récupérer un utilisateur en se basant sur son ID.
+	 */
 	@Override
 	public AppUser findOne(long id) {
-		// TODO Auto-generated method stub
 		return userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 	}
 
+	 /**
+	  * Cette fonction permet d'ajouter un utilisateur.
+	  */
 	@Override
 	public AppUser save(AppUser appUser) {
-		// TODO Auto-generated method stub
 		String pw = appUser.getPassword();
 		String encodedpw = encoder.encode(pw);
 		appUser.setPassword(encodedpw);
 		return userRepository.save(appUser);
 	}
-
+	
+	/**
+	 * Cette fonction permet de faire la recherche sur les utilisateur en se basant sur un mot clé et les critères.
+	 */
 	@Override
 	public Page<AppUser> search(String mc, int page, int size, String column) {
 		//recevoire toute la liste
@@ -92,6 +101,9 @@ public class UserServiceImpl implements UserService {
 	    }
 	    return true;
 	}
+	/**
+	 * Cette fonction permet de faire la modification des utilisateurs.
+	 */
 	@Override
 	public AppUser update(Long id, AppUser appUser) {
 		appUser.setId(id);
@@ -99,13 +111,19 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(EntityNotFoundException::new)
                 .updateProperties(appUser));
 	}
-
+ 
+	/**
+	 * Cette fonction permet de retourner tout les utilisateurs.
+	 */
 	@Override
 	public Page<AppUser> findAllPageable(int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
 		return userRepository.findAll(pageable);
 	}
 
+	/**
+	 * Cette fonction permet de supprimer un utilisateur.
+	 */
 	@Override
 	public AppUser delete(Long id) {
 		AppUser user = userRepository.findById(id).get();

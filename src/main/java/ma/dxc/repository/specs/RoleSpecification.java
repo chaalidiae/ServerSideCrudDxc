@@ -27,7 +27,11 @@ public class RoleSpecification implements Specification<AppRole> {
 	public void add(SearchCriteria criteria) {
         list.add(criteria);
 	}
-
+	
+	/**
+	 * Cette fonction nous permet de créer une nouvelle liste de prédicats, puis on ajoute critéria à cette liste,
+	 * puis on traite tout les cas possibles.
+	 */
 	@Override
 	public Predicate toPredicate(Root<AppRole> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 		//creation d'une nouvelle predicate list

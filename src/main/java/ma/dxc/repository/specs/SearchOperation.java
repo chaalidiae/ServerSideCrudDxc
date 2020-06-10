@@ -1,5 +1,9 @@
 package ma.dxc.repository.specs;
-
+/**
+ * Cette enum représente l'ensemble des opérations de recherche.
+ * @author dchaa
+ *
+ */
 public enum SearchOperation {
 	GREATER_THAN,
     LESS_THAN,

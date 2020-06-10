@@ -2,6 +2,12 @@ package ma.dxc.dto;
 
 import ma.dxc.service.audit.Operation;
 
+/**
+ * Cette classe est identique à Audit, mais cette dernière ne peut pas communiquer avec la couche REST, donc, 
+ * on ajoute une autre classe AuditDTO qui va nous rendre ce service.
+ * @author dchaa
+ *
+ */
 public class AuditDTO {
 	
 	private Long id;

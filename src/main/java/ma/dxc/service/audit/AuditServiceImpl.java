@@ -20,27 +20,32 @@ public class AuditServiceImpl implements AuditService {
 	@Autowired
 	AuditRepository auditRepository;
 	
+	/**
+	 * Cette fonction permet de retourner une liste des utilisateurs.
+	 */
 	@Override
 	public List<Audit> findAll() {
-		// TODO Auto-generated method stub
 		return auditRepository.findAll();
 	}
-
+	
+	/**
+	 * Cette fonction permet de retrouver un audit en se basant sur son ID.
+	 */
 	@Override
 	public Audit findOne(long id) {
-		// TODO Auto-generated method stub
 		return auditRepository.getOne(id);
 	}
-
+	
+	/**
+	 * Cette fonction permet d'ajouter un audit.
+	 */
 	@Override
 	public Audit save(Audit audit) {
-		// TODO Auto-generated method stub
 		return auditRepository.save(audit);
 	}
 	
 	@Override
 	public Long getMaxId() {
-		// TODO Auto-generated method stub
 		auditRepository.findAll();
 		Pageable pageable = PageRequest.of(1, 1);
 		AuditSpecification auditSpecification = new AuditSpecification();
@@ -48,10 +53,12 @@ public class AuditServiceImpl implements AuditService {
 		List<Audit> msTitleList = auditRepository.findAll(auditSpecification,pageable).getContent();
 		return msTitleList.get(0).getId();
 	}
-
+	
+	/**
+	 * Cette fonction permet de faire la recherche sur les audits en se basant sur un critère et un mot clé.
+	 */
 	@Override
 	public Page<Audit> search(String mc, int page, int size, String column) {
-		// TODO Auto-generated method stub
 		auditRepository.findAll();
 		Pageable pageable = PageRequest.of(page, size);
 		AuditSpecification auditSpecification = new AuditSpecification();
@@ -80,7 +87,6 @@ public class AuditServiceImpl implements AuditService {
 	
 	@Override
 	public Page<Audit> searchTwoKeywords(String mc1, String mc2, int page, int size, String column) {
-		// TODO Auto-generated method stub
 		auditRepository.findAll();
 		Pageable pageable = PageRequest.of(page, size);
 		AuditSpecification auditSpecificationG = new AuditSpecification();
@@ -92,16 +98,19 @@ public class AuditServiceImpl implements AuditService {
 	}
 	
 	
-
+	/**
+	 * Cette fonction permet de faire la modification sur un audit.
+	 */
 	@Override
 	public Audit update(Long id, Audit audit) {
-		// TODO Auto-generated method stub
 		return auditRepository.saveAndFlush(audit);
 	}
-
+	
+	/**
+	 * Cette fonction permet de retourner tout les audits.
+	 */
 	@Override
 	public Page<Audit> findAllPageable(int page, int size) {
-		// TODO Auto-generated method stub
 		Pageable pageable = PageRequest.of(page, size);
 		return auditRepository.findAll(pageable);
 	}
