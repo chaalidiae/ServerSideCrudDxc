@@ -131,5 +131,11 @@ public class PermissionRestService {
 		return PermissionOrchestration.getPageOfPermissions(page, size);
 	}
 	
+	@PreAuthorize("hasAuthority('DELETE')")
+	@DeleteMapping(value="/permissions/{id}")
+	public Boolean deletePermission(@PathVariable Long id){
+		PermissionOrchestration.deletePermission(id);
+		return true;
+	}
 
 }

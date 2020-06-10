@@ -83,5 +83,10 @@ public class AppUserOrchestration {
 		return userDTOs;
 	}
 	
+	public Boolean deleteUser(Long id){
+		userservice.delete(id);
+		return true;
+	}
+	
 
 }

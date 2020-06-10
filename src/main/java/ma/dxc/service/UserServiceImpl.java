@@ -10,11 +10,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ma.dxc.model.AppRole;
 import ma.dxc.model.AppUser;
+import ma.dxc.model.Contact;
 import ma.dxc.model.Permission;
 import ma.dxc.repository.UserRepository;
 import ma.dxc.repository.specs.PermissionSpecification;
@@ -30,6 +32,8 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 	@Autowired
 	RoleServiceImpl appRoleServiceImpl;
+	@Autowired
+	BCryptPasswordEncoder encoder;
 
 	@Override
 	public List<AppUser> findAll() {
@@ -46,6 +50,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public AppUser save(AppUser appUser) {
 		// TODO Auto-generated method stub
+		String pw = appUser.getPassword();
+		String encodedpw = encoder.encode(pw);
+		appUser.setPassword(encodedpw);
 		return userRepository.save(appUser);
 	}
 
@@ -102,6 +109,14 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		Pageable pageable = PageRequest.of(page, size);
 		return userRepository.findAll(pageable);
+	}
+
+	@Override
+	public AppUser delete(Long id) {
+		AppUser user = userRepository.findById(id).get();
+		System.out.println(user.toString());
+		user.setDeleted(true);
+		return userRepository.save(user);
 	}
 
 }

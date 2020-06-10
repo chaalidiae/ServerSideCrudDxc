@@ -9,12 +9,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 
 @Entity
+@Where(clause = "deleted = 0")
 public class AppUser {
 	@Id @GeneratedValue
 	private Long id;
@@ -22,6 +26,18 @@ public class AppUser {
 	@Column(unique = true)
 	private String username;
 	private String password;
+	
+	private boolean deleted = false;
+
+	
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<AppRole> roles = new ArrayList<>();

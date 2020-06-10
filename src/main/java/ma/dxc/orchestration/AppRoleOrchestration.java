@@ -91,5 +91,10 @@ public class AppRoleOrchestration {
 	public AppRoleDTO getAppRoleByRoleName(String roleName){
 		return AppRoleMapper.INSTANCE.toAppRoleDTO(roleservice.getRoleByRoleName(roleName));
 	}
+	
+	public Boolean deleteRole(Long id){
+		roleservice.delete(id);
+		return true;
+	}
 
 }

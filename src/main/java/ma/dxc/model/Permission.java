@@ -5,12 +5,26 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Where;
+
 
 @Entity
+@Where(clause = "deleted = 0")
 public class Permission {
 	@Id @GeneratedValue
 	private Long id;
 	private String permissionName;
+	private boolean deleted = false;
+
+	
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 	public Permission() {
 		super();
 		// TODO Auto-generated constructor stub

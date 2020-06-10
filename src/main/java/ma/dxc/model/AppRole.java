@@ -10,13 +10,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.Where;
+
 
 @Entity
+@Where(clause = "deleted = 0")
 public class AppRole {
 	
 	@Id @GeneratedValue
 	private Long id;
 	private String roleName;
+	private boolean deleted = false;
+
+	
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Permission> permissions = new ArrayList<>();
 	public AppRole() {

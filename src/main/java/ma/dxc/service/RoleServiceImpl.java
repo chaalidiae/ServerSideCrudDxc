@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ma.dxc.model.AppRole;
+import ma.dxc.model.AppUser;
 import ma.dxc.model.Contact;
 import ma.dxc.model.Permission;
 import ma.dxc.repository.RoleRepository;
@@ -34,31 +35,26 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public List<AppRole> findAll() {
-		// TODO Auto-generated method stub
 		return roleRepository.findAll();
 	}
 
 	@Override
 	public AppRole findOne(long id) {
-		// TODO Auto-generated method stub
 		return roleRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 	}
 
 	@Override
 	public AppRole save(AppRole appRole) {
-		// TODO Auto-generated method stub
 		return roleRepository.save(appRole);
 	}
 	
 	@Override
 	public AppRole getRoleByRoleName(String roleName) {
-		// TODO Auto-generated method stub
 		return roleRepository.findByRoleName(roleName);
 	}
 
 	@Override
 	public Page<AppRole> search(String mc, int page, int size, String column) {
-		//recevoire toute la liste
 				roleRepository.findAll();
 				Pageable pageable = PageRequest.of(page, size);
 				RoleSpecification roleSpecification = new RoleSpecification();
@@ -110,6 +106,14 @@ public class RoleServiceImpl implements RoleService {
 		// TODO Auto-generated method stub
 		Pageable pageable = PageRequest.of(page, size);
 		return roleRepository.findAll(pageable);
+	}
+
+	@Override
+	public AppRole delete(Long id) {
+		AppRole role = roleRepository.findById(id).get();
+		System.out.println(role.toString());
+		role.setDeleted(true);
+		return roleRepository.save(role);
 	}
 
 }

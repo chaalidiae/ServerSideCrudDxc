@@ -82,5 +82,10 @@ public class PermissionOrchestration {
 		return permissionDTOs ;
 	}
 	
+	public Boolean deletePermission(Long id){
+		Permissionservice.delete(id);
+		return true;
+	}
+	
 
 }
