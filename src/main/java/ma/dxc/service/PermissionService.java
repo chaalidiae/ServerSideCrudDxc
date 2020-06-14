@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-import ma.dxc.model.AppUser;
 import ma.dxc.model.Permission;
 
 public interface PermissionService {

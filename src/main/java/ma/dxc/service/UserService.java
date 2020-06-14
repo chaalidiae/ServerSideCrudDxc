@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import ma.dxc.model.AppUser;
-import ma.dxc.model.Contact;
 
 /**
  * Cette interface contient l'ensemble des fonctions qu'on va utiliser pour effectuer les opération CRUD.

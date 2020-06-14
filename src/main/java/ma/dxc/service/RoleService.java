@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import ma.dxc.model.AppRole;
-import ma.dxc.model.AppUser;
 
 /**
  * Cette interface contient les différents fonctions CRUD pour l'entité Role.
