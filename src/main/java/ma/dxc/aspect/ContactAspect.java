@@ -71,12 +71,12 @@ public class ContactAspect {
     	
     	Contact contactAudited = service.findOne(id); 
     	System.out.println("**************\n"+contactAudited.getId()+"\n"+contactAudited.toString()+"\n*******************\n");
-    	javers.commit("hamada",contactAudited);
+    	javers.commit(user,contactAudited);
     	
         Object object = proceedingJoinPoint.proceed();
         
         contactAudited = service.findOne(id);
-    	javers.commit("hamada",contactAudited);
+    	javers.commit(user,contactAudited);
     	String changes = javers.findChanges( QueryBuilder.byInstance(contactAudited).build()).toString();
     	System.out.println("\n \n *************************** \n\n"+changes+"\n \n *************************** \n\n");
 
