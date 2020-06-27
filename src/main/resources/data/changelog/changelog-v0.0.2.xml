@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<databaseChangeLog  
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">  
+  <changeSet id="1" author="benali">
+  	<insert tableName="app_user">
+  		<column name="id" value="1" />
+  		<column name="deleted" valueBoolean="false" />
+  		<column name="password" value="$2a$10$Pn9gpvb6wdBrWZ.tgV30heuHQHaf3xuE.0W3n05bx3uHgVunmWFEi" />
+  		<column name="username" value="admin" />
+  	</insert>
+  	<insert tableName="app_user">
+  		<column name="id" value="2" />
+  		<column name="deleted" valueBoolean="false" />
+  		<column name="password" value="$2a$10$cOnrUGrmIKcXqzQpHNNyfO.6JSb3B/jHt0MfhlrvvWRx0Mgv0Nn/e" />
+  		<column name="username" value="user" />
+  	</insert>
+  	<insert tableName="app_role">
+  		<column name="id" value="1" />
+  		<column name="deleted" valueBoolean="false" />
+  		<column name="role_name" value="ADMIN" />
+  	</insert>
+  	<insert tableName="app_role">
+  		<column name="id" value="2" />
+  		<column name="deleted" valueBoolean="false" />
+  		<column name="role_name" value="USER" />
+  	</insert>
+  	<insert tableName="app_user_roles">
+  		<column name="app_user_id" value="1" />
+  		<column name="roles_id" value="1" />
+  	</insert>
+  	<insert tableName="app_user_roles">
+  		<column name="app_user_id" value="2" />
+  		<column name="roles_id" value="2" />
+  	</insert>
+  	<insert tableName="permission">
+  		<column name="id" value="1" />
+  		<column name="permission_name" value="READ" />
+  		<column name="deleted" valueBoolean="false" />
+  	</insert>
+  	<insert tableName="permission">
+  		<column name="id" value="2" />
+  		<column name="permission_name" value="ADD" />
+  		<column name="deleted" valueBoolean="false" />
+  	</insert>
+  	<insert tableName="permission">
+  		<column name="id" value="3" />
+  		<column name="permission_name" value="UPDATE" />
+  		<column name="deleted" valueBoolean="false" />
+  	</insert>
+  	<insert tableName="permission">
+  		<column name="id" value="4" />
+  		<column name="permission_name" value="DELETE" />
+  		<column name="deleted" valueBoolean="false" />
+  	</insert>
+  	<insert tableName="app_role_permissions">
+  		<column name="permissions_id" value="1" />
+  		<column name="app_role_id" value="1" />
+  	</insert>
+  	<insert tableName="app_role_permissions">
+  		<column name="permissions_id" value="2" />
+  		<column name="app_role_id" value="1" />
+  	</insert>
+  	<insert tableName="app_role_permissions">
+  		<column name="permissions_id" value="3" />
+  		<column name="app_role_id" value="1" />
+  	</insert>
+  	<insert tableName="app_role_permissions">
+  		<column name="permissions_id" value="4" />
+  		<column name="app_role_id" value="1" />
+  	</insert>
+  	<insert tableName="app_role_permissions">
+  		<column name="permissions_id" value="1" />
+  		<column name="app_role_id" value="2" />
+  	</insert>
+  	
+  </changeSet>
+</databaseChangeLog>
