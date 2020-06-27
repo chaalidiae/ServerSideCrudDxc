@@ -75,6 +75,6 @@
   		<column name="permissions_id" value="1" />
   		<column name="app_role_id" value="2" />
   	</insert>
-  	
+  	<!-- HereICanAddNewClasss -->
   </changeSet>
 </databaseChangeLog>
