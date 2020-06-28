@@ -29,20 +29,6 @@ public class ContactApplication implements CommandLineRunner {
 	
 
 	@Override
-	public void run(String... args) throws Exception {
-		/*
-		accountService.saveUser(new AppUser(null, "admin","1234",null));
-		accountService.saveUser(new AppUser(null, "user","1234",null));
-		accountService.saveRole(new AppRole(null,"ADMIN"));
-		accountService.saveRole(new AppRole(null,"USER"));
-		accountService.addRoleToUser("admin", "ADMIN");
-		accountService.addRoleToUser("admin", "USER");
-		accountService.addRoleToUser("user", "USER");
-		*/
-		
-		
-		
-		
-	}
+	public void run(String... args) throws Exception {}
 
 }

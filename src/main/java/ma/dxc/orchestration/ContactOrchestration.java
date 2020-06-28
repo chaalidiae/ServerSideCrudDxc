@@ -15,7 +15,7 @@ import ma.dxc.service.ContactServiceImpl;
 
 @Service
 public class ContactOrchestration {
-	
+	CycleAvoidingMappingContext  context = new CycleAvoidingMappingContext();
 	/**
 	 * On déclare un objet de la classe ContactServiceImpl qui va lui meme faire appel à la couche DAO
 	 * afin d'interagir avec la base de données.
@@ -28,7 +28,7 @@ public class ContactOrchestration {
 	 * @return
 	 */
 	public List<ContactDTO> getContacts(){
-		return ContactMapper.INSTANCE.toContactDTOs(contactservice.findAll());
+		return ContactMapper.INSTANCE.toContactDTOs(contactservice.findAll(),context);
 	}
 	
 	/**
@@ -37,18 +37,18 @@ public class ContactOrchestration {
 	 * @return
 	 */
 	public ContactDTO getContact(Long id){
-		return ContactMapper.INSTANCE.toContactDTO(contactservice.findOne(id));
+		return ContactMapper.INSTANCE.toContactDTO(contactservice.findOne(id),context);
 	}
 	
 	/**
 	 * cette fonction prend un contact comme argument et puis elle le stock dans la base de donnée.
-	 * @param contact
+	 * @param contactDTO
 	 * @return
 	 */
 	public ContactDTO saveContact(ContactDTO contactDTO){
-		Contact contact = ContactMapper.INSTANCE.toContact(contactDTO);
+		Contact contact = ContactMapper.INSTANCE.toContact(contactDTO,context);
 		contact = contactservice.save(contact);
-		return ContactMapper.INSTANCE.toContactDTO(contact);
+		return ContactMapper.INSTANCE.toContactDTO(contact,context);
 	}
 	
 	/**
@@ -64,12 +64,12 @@ public class ContactOrchestration {
 	/**
 	 * cette fonction fait la mise à jour d'un contact
 	 * @param id
-	 * @param contact
+	 * @param contactDTO
 	 * @return
 	 */
 	public ContactDTO updateContact(Long id, ContactDTO contactDTO){
-		Contact contact = ContactMapper.INSTANCE.toContact(contactDTO);
-		contactDTO =  ContactMapper.INSTANCE.toContactDTO(contactservice.update(id, contact));
+		Contact contact = ContactMapper.INSTANCE.toContact(contactDTO,context);
+		contactDTO =  ContactMapper.INSTANCE.toContactDTO(contactservice.update(id, contact),context);
 		return contactDTO;
 	}
 	
@@ -83,20 +83,20 @@ public class ContactOrchestration {
 	 */
 	public Page<ContactDTO> searchContact( String mc,int page,int size,String column){
 		Page<Contact> contacts = contactservice.search(mc, page, size, column);
-		List<ContactDTO> contactDTOs = ContactMapper.INSTANCE.toContactDTOs(contacts.getContent());
+		List<ContactDTO> contactDTOs = ContactMapper.INSTANCE.toContactDTOs(contacts.getContent(),context);
 		return new PageImpl<>(contactDTOs,PageRequest.of(page, size),contacts.getTotalElements());
 	}
 	
 	public Page<ContactDTO> searchTwoKeywords( String mc1,String mc2,int page,int size,String column) throws ParseException{
 		Page<Contact> contacts = contactservice.searchTwoKeywords(mc1, mc2, page, size, column);
-		List<ContactDTO> contactDTOs = ContactMapper.INSTANCE.toContactDTOs(contacts.getContent());
+		List<ContactDTO> contactDTOs = ContactMapper.INSTANCE.toContactDTOs(contacts.getContent(),context);
 		return new PageImpl<>(contactDTOs,PageRequest.of(page, size),contacts.getTotalElements());
 	}
 	
 	
 	public Page<ContactDTO> getPageofContacts(int page,int size){
 		Page<Contact> contacts = contactservice.findAllPageable(page, size);
-		Page<ContactDTO> contactDTOs = ContactMapper.INSTANCE.toContactDTOsPageable(contacts);
+		Page<ContactDTO> contactDTOs = ContactMapper.INSTANCE.toContactDTOsPageable(contacts,context);
 		return contactDTOs;
 	}
 	
