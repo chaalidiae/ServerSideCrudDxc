@@ -55,6 +55,11 @@
   		<column name="permission_name" value="DELETE" />
   		<column name="deleted" valueBoolean="false" />
   	</insert>
+  	<insert tableName="permission">
+  		<column name="id" value="5" />
+  		<column name="permission_name" value="READPROFILE" />
+  		<column name="deleted" valueBoolean="false" />
+  	</insert>
   	<insert tableName="app_role_permissions">
   		<column name="permissions_id" value="1" />
   		<column name="app_role_id" value="1" />
@@ -72,7 +77,15 @@
   		<column name="app_role_id" value="1" />
   	</insert>
   	<insert tableName="app_role_permissions">
+  		<column name="permissions_id" value="5" />
+  		<column name="app_role_id" value="1" />
+  	</insert>
+  	<insert tableName="app_role_permissions">
   		<column name="permissions_id" value="1" />
+  		<column name="app_role_id" value="2" />
+  	</insert>
+  	<insert tableName="app_role_permissions">
+  		<column name="permissions_id" value="5" />
   		<column name="app_role_id" value="2" />
   	</insert>
   	<!-- HereICanAddNewClasss -->

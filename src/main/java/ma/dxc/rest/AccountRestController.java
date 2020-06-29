@@ -2,16 +2,21 @@ package ma.dxc.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import ma.dxc.orchestration.RegisterFormOrchestration;
 import ma.dxc.security.AuthenticationRequest;
 import ma.dxc.security.AuthenticationResponse;
@@ -35,6 +40,7 @@ public class AccountRestController {
 	
 	@Autowired
 	private MyUserDetailsService userDetailsService;
+	
 	
 	@PostMapping("/register")
 	public AppUserDTO register(@RequestBody RegisterFormDTO userFormDto) {
@@ -60,6 +66,18 @@ public class AccountRestController {
 		final String jwt = jwtTokenUtil.generateToken(userDetails);
 
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
+	}
+	
+	/**
+	 * cette fonction nous retourne le AppUser qui est connecté au moment 
+	 * @param id
+	 * @return
+	 */
+	@PreAuthorize("hasAuthority('READPROFILE')")
+	@GetMapping(value="/profile")
+	public Authentication getAppUser(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+				return authentication;
 	}
 
 }
