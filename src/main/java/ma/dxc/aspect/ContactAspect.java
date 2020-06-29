@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import static ma.dxc.service.audit.Operation.INSERTE_CONTACT;
 import static ma.dxc.service.audit.Operation.UPDATE_CONTACT;
+import static ma.dxc.service.audit.Operation.DELETE_CONTACT;
 
 import ma.dxc.model.Audit;
 import ma.dxc.model.Contact;
@@ -46,6 +47,9 @@ public class ContactAspect {
 	
 	@Pointcut(value = "execution(* ma.dxc.service.ContactServiceImpl.update(..)) && args(id,contact,..)")
     public void myUpdatePointcut(Long id, Contact contact){ }
+	
+	@Pointcut(value = "execution(* ma.dxc.service.ContactServiceImpl.delete(..))")
+    public void myDeletePointcut(){ }
 	
 	@AfterReturning(pointcut = "mySavePointcut()",returning= "result")
     public void logAfterReturningUsers(JoinPoint joinPoint, Object result) throws Throwable{
@@ -84,6 +88,18 @@ public class ContactAspect {
         
 		
         return object;
+    }
+	
+	@AfterReturning(pointcut = "myDeletePointcut()",returning= "result")
+    public void logAfterReturningUser(JoinPoint joinPoint, Object result) throws Throwable{
+		Contact contact = (Contact) result;
+		Long objectID = contact.getId();
+    	String objectType = contact.getClass().getName();
+		Date date = new Date();
+    	String changes = "DELETED : "+contact.toString();
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String user = authentication.getName();
+    	saveAudit(user, objectID, objectType, date,DELETE_CONTACT,changes);
     }
 	
 	public void saveAudit(String user,Long objectID,String objectType,Date date,Operation operation,String changes) {
