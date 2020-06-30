@@ -5,6 +5,7 @@ import java.util.List;
 import org.mapstruct.Context;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.data.domain.Page;
 
 import java.lang.reflect.Type;
@@ -17,12 +18,13 @@ public class ContactMapperImpl implements ContactMapper {
 
 	@Override
 	public ContactDTO toContactDTO(Contact contact, @Context CycleAvoidingMappingContext context) {
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return modelMapper.map(contact, ContactDTO.class);
 	}
 
 	@Override
 	public List<ContactDTO> toContactDTOs(List<Contact> contacts, @Context CycleAvoidingMappingContext context) {
-		
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		Type listType = new TypeToken<List<ContactDTO>>(){}.getType();
 		List<ContactDTO> contactDTOs = modelMapper.map(contacts,listType);
 		
@@ -31,12 +33,13 @@ public class ContactMapperImpl implements ContactMapper {
 
 	@Override
 	public Contact toContact(ContactDTO contactDTO, @Context CycleAvoidingMappingContext context) {
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return modelMapper.map(contactDTO, Contact.class);
 	}
 
 	@Override
 	public Page<ContactDTO> toContactDTOsPageable(Page<Contact> contacts, @Context CycleAvoidingMappingContext context) {
-		
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		Type listType = new TypeToken<Page<ContactDTO>>(){}.getType();
 		Page<ContactDTO> contactDTOsPageable = modelMapper.map(contacts,listType);
 		return contactDTOsPageable;
