@@ -1,5 +1,6 @@
 package ma.dxc.aspect;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.aspectj.lang.JoinPoint;
@@ -57,10 +58,10 @@ public class ContactAspect {
 		Long objectID = contact.getId();
     	String objectType = contact.getClass().getName();
 		Date date = new Date();
-    	String changes = contact.toString();
+    	//String changes = contact.toString();
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String user = authentication.getName();
-    	saveAudit(user, objectID, objectType, date,INSERTE_CONTACT,changes);
+    	saveAudit(user, objectID, objectType, date,INSERTE_CONTACT,"");
     }
 	
 	@Around("myUpdatePointcut(id,contact)")
@@ -84,7 +85,7 @@ public class ContactAspect {
     	String changes = javers.findChanges( QueryBuilder.byInstance(contactAudited).build()).toString();
     	System.out.println("\n \n *************************** \n\n"+changes+"\n \n *************************** \n\n");
 
-    	saveAudit(user, objectID, objectType, date, UPDATE_CONTACT, changes);
+    	saveAudit(user, objectID, objectType, date, UPDATE_CONTACT, symplifyChanges(changes));
         
 		
         return object;
@@ -96,10 +97,10 @@ public class ContactAspect {
 		Long objectID = contact.getId();
     	String objectType = contact.getClass().getName();
 		Date date = new Date();
-    	String changes = "DELETED : "+contact.toString();
+    	//String changes = "DELETED : "+contact.toString();
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String user = authentication.getName();
-    	saveAudit(user, objectID, objectType, date,DELETE_CONTACT,changes);
+    	saveAudit(user, objectID, objectType, date,DELETE_CONTACT,"");
     }
 	
 	public void saveAudit(String user,Long objectID,String objectType,Date date,Operation operation,String changes) {
@@ -107,5 +108,25 @@ public class ContactAspect {
 		auditRepository.save(audit);
 	}
 	
+	public String symplifyChanges(String changes) {
+		String[] tab = changes.split("-");
+		ArrayList<String> array = new ArrayList<String>();
+		for (String string : tab) {
+			array.add(string);
+		}
+		array.remove(0);
+		String changement = "";
+		for (String string : array) {
+			String[] table = string.split(" value changed from ");
+			String colomn = table[0].replace("'", "");
+			String change = table[1].replace("'", "");
+			String[] table2 = change.split("to");
+			String oldValue = table2[0];
+			String newValue = table2[1];
+			//System.out.println("colomn:"+colomn+", oldValue = "+oldValue+", newValue = "+newValue );
+			changement = changement +" column:"+colomn+", oldValue = "+oldValue+", newValue = "+newValue+"////";
+		}
+		return changement;
+	}
 	
 }
