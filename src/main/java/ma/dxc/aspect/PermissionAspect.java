@@ -58,7 +58,7 @@ public class PermissionAspect {
     	String changes = permission.toString();
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String user = authentication.getName();
-    	saveAudit(user, objectID, objectType, date,INSERTE_PERMISSION,changes);
+    	saveAudit(user, objectID, objectType, date,INSERTE_PERMISSION,"");
     }
 	
 	@Around("myUpdatePointcut(id,permission)")

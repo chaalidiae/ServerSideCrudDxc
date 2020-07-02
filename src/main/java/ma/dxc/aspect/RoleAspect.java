@@ -59,7 +59,7 @@ public class RoleAspect {
     	String changes = appRole.toString();
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String user = authentication.getName();
-    	saveAudit(user, objectID, objectType, date,INSERTE_ROLE,changes);
+    	saveAudit(user, objectID, objectType, date,INSERTE_ROLE,"");
     }
 	
 	@Around("myUpdatePointcut(id,appRole)")
