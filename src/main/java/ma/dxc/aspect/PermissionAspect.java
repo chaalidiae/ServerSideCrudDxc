@@ -1,6 +1,6 @@
 package ma.dxc.aspect;
 
-import static ma.dxc.service.audit.Operation.DELETE_CONTACT;
+import static ma.dxc.service.audit.Operation.DELETE_PERMISSION;
 import static ma.dxc.service.audit.Operation.INSERTE_PERMISSION;
 import static ma.dxc.service.audit.Operation.UPDATE_PERMISSION;
 
@@ -21,7 +21,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import ma.dxc.model.Audit;
-import ma.dxc.model.Contact;
 import ma.dxc.model.Permission;
 import ma.dxc.repository.AuditRepository;
 import ma.dxc.service.PermissionServiceImpl;
@@ -93,7 +92,7 @@ public class PermissionAspect {
     	//String changes = "DELETED : "+contact.toString();
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String user = authentication.getName();
-    	saveAudit(user, objectID, objectType, date,DELETE_CONTACT,"");
+    	saveAudit(user, objectID, objectType, date,DELETE_PERMISSION,"");
     }
 	
 	public void saveAudit(String user,Long objectID,String objectType,Date date,Operation operation,String changes) {

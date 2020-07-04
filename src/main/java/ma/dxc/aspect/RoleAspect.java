@@ -19,12 +19,11 @@ import org.springframework.stereotype.Component;
 
 import ma.dxc.model.AppRole;
 import ma.dxc.model.Audit;
-import ma.dxc.model.Contact;
 import ma.dxc.repository.AuditRepository;
 import ma.dxc.service.RoleServiceImpl;
 import ma.dxc.service.audit.Operation;
 
-import static ma.dxc.service.audit.Operation.DELETE_CONTACT;
+import static ma.dxc.service.audit.Operation.DELETE_ROLE;
 import static ma.dxc.service.audit.Operation.INSERTE_ROLE;
 import static ma.dxc.service.audit.Operation.UPDATE_ROLE;;
 
@@ -98,7 +97,7 @@ public class RoleAspect {
     	//String changes = "DELETED : "+contact.toString();
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	String user = authentication.getName();
-    	saveAudit(user, objectID, objectType, date,DELETE_CONTACT,"");
+    	saveAudit(user, objectID, objectType, date,DELETE_ROLE,"");
     }
 	
 	public String symplifyChanges(String changes) {
